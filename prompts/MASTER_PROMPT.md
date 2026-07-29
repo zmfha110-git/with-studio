@@ -1,7 +1,12 @@
 # MASTER PROMPT
 
-Version: 1.0  
-Status: Active
+- Version: 1.0
+- Status: Active
+- Reference: `references/MASTER_REFERENCE_v1.png`
+- Input Order: 1) Master Reference, 2) Product Original
+- Output: 1:1 PNG
+
+## Prompt
 
 첫 번째 이미지를 마스터 레퍼런스로 사용해.
 

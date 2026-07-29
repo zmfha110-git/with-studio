@@ -1,27 +1,45 @@
 # Workflow
 
+WITH Studio v1.0의 제품 이미지 1건을 생성하고 검수하는 절차입니다.
+
+## 작업 전
+
+1. `bash scripts/validate-repository.sh` 실행
+2. `products/{product}/original`과 `products/{product}/output` 존재 확인
+3. 원본 파일명을 `docs/FILE_NAMING.md`에 맞춤
+4. 사용할 테스트 ID를 `tests/TEST_LOG.md`의 마지막 번호 다음으로 지정
+
 ## 실제 이미지 제작
 
-1. 마스터 레퍼런스 이미지를 첫 번째로 첨부
-2. 원본 제품 이미지를 두 번째로 첨부
-3. `prompts/MASTER_PROMPT.md` 사용
-4. 결과물 검토
-5. 제품별 `output` 폴더에 저장
+1. `references/MASTER_REFERENCE_v1.png`를 첫 번째 이미지로 첨부
+2. 제품의 `original` 이미지를 두 번째 이미지로 첨부
+3. `prompts/MASTER_PROMPT.md` v1.0 사용
+4. 결과물을 제품의 `output` 폴더에 새 파일로 저장
+5. `tests/QA_CHECKLIST.md`로 검수
+6. `tests/TEST_LOG.md`에 실행 조건과 판정 기록
 
-## 검수 항목
+입력 순서가 틀렸거나 원본이 아닌 가공본을 입력했다면 결과를 평가하지 않고 다시 실행합니다.
 
-- 박스 가로세로 비율이 원본과 동일한가
-- 글자와 로고가 변형되지 않았는가
-- 촬영각이 과도하게 바뀌지 않았는가
-- 배경이 깨끗한 순백인가
-- 그림자가 부드럽고 자연스러운가
-- 표면이 매끄러운 무광 크라프트로 보이는가
-- 동일한 스튜디오에서 촬영한 것처럼 보이는가
+## 판정
+
+- `PASS`: 필수 보존 항목과 촬영 스타일 기준을 모두 충족
+- `REVISE`: 필수 보존 항목은 유지됐으나 스타일이나 마감 수정 필요
+- `FAIL`: 비율·실루엣·로고·한글 텍스트·인쇄 배치 중 하나라도 변경
+
+필수 보존 항목은 `FAIL` 우선입니다. 예를 들어 배경이 완벽해도 한글 텍스트가 바뀌면 `FAIL`입니다.
 
 ## 실패 시
 
-1. 실패 결과를 `tests/failure`에 저장
-2. `tests/TEST_LOG.md`에 원인 기록
-3. 프롬프트 수정
-4. `CHANGELOG.md` 업데이트
-5. 새 버전으로 재시험
+1. 실패 결과 원본은 제품 `output`에 유지
+2. 실패 결과 사본을 `tests/failure`에 저장
+3. `tests/TEST_LOG.md`에 관찰 사실과 추정 원인을 분리해 기록
+4. 동일 프롬프트 재실행 또는 프롬프트 수정 중 다음 행동 선택
+5. 프롬프트 수정 시 버전과 `CHANGELOG.md` 업데이트
+6. 새 테스트 ID로 재시험
+
+## 작업 종료
+
+1. 출력 파일과 테스트 로그의 경로가 서로 일치하는지 확인
+2. `bash scripts/validate-repository.sh` 실행
+3. `git diff --check` 실행
+4. 마스터 레퍼런스 이미지가 변경되지 않았는지 확인
