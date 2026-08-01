@@ -2,6 +2,8 @@
 
 모든 파일명은 영문 소문자 kebab-case를 기본으로 하고, 테스트 ID와 버전 표기만 대문자를 허용합니다.
 
+한글 파일명은 사용하지 않습니다. macOS의 한글 유니코드 정규화 차이로 같은 이름이 서로 다른 파일로 인식될 수 있고, URL·외부 업로드·스크립트 처리에서 호환성 문제가 생길 수 있기 때문입니다.
+
 ## Master Reference
 
 `MASTER_REFERENCE_v1.png`
@@ -22,11 +24,47 @@
 
 경로:
 
-`products/{product}/output/{product}-{type}-studio-v{prompt-version}-{number}.png`
+`products/{product}/output/{product}-{variant}-{image-type}-{composition}-studio-v{prompt-version}-{number}.png`
 
 예시:
 
-`dry-tissue-box-studio-v1-01.png`
+`with-wipes-individual-main-box-product-studio-v1-01.png`
+
+### Variant
+
+| 상품 종류 | 값 |
+| --- | --- |
+| 개별 | `individual` |
+| 개별(무지) | `individual-plain` |
+| 덕용 | `bulk` |
+| 미니 | `mini` |
+| 건티슈 | `dry-tissue` |
+
+### Image Type
+
+| 이미지 용도 | 값 |
+| --- | --- |
+| 대표이미지 | `main` |
+| 상세이미지 | `detail` |
+| 박스이미지 | `box` |
+
+### Composition
+
+- 박스와 상품을 함께 보여주는 이미지는 `box-product`를 사용합니다.
+- 상품만 보여주는 이미지는 `product`를 사용합니다.
+- 박스이미지는 구성이 자명하므로 `composition`을 생략할 수 있습니다.
+- 정면·후면처럼 구분이 필요할 때만 `front`, `back`, `side`, `top`을 구성 뒤에 추가합니다.
+- 대표이미지의 상품 배치는 우측을 기본값으로 하며 파일명에는 배치 방향을 넣지 않습니다.
+
+예시:
+
+- `with-wipes-individual-main-box-product-studio-v1-01.png`
+- `with-wipes-individual-plain-main-box-product-studio-v1-01.png`
+- `with-wipes-bulk-main-box-product-studio-v1-01.png`
+- `with-wipes-mini-main-box-product-studio-v1-01.png`
+- `with-wipes-dry-tissue-main-box-product-studio-v1-01.png`
+- `with-wipes-individual-box-studio-v1-01.png`
+- `with-wipes-individual-detail-product-front-studio-v1-01.png`
 
 ## Failed Test
 

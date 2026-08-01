@@ -2,6 +2,31 @@
 
 WITH Studio의 운영 기준, 프롬프트, 레퍼런스, 폴더 구조 변경을 기록합니다.
 
+## [1.0.2] — 2026-08-01
+
+### Changed
+
+- 출력 파일명을 `{product}-{variant}-{image-type}-{composition}-studio-v{prompt-version}-{number}` 구조로 세분화
+- 상품 종류를 `individual`, `individual-plain`, `bulk`, `mini`, `dry-tissue`로 고정
+- 대표이미지의 우측 배치를 기본값으로 정하고 파일명에서는 배치 방향을 생략
+- 위치·크기 조정은 임시 시안으로 확인하고 최종 승인본에만 저장·QA를 수행하도록 작업 절차 변경
+
+### Added
+
+- macOS 한글 정규화와 외부 연동 문제를 피하기 위한 영문 kebab-case 파일명 기준
+- 박스와 상품의 합성 구성을 나타내는 `box-product` 값
+
+## [1.0.1] — 2026-07-31
+
+### Added
+
+- 전경 제품 합성 시 실제 `RGBA PNG` 사용 기준
+- 제품 외곽의 원본 배경·흰색/회색 띠·임의 그림자 검사 항목
+
+### Changed
+
+- 전경 제품은 별도 그림자 없이 원본 알파로 직접 합성하도록 스타일 가이드와 QA 체크리스트를 명료화
+
 ## [1.0.0] — 2026-07-30
 
 ### Added

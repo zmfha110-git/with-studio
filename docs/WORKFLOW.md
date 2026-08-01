@@ -14,9 +14,10 @@ WITH Studio v1.0의 제품 이미지 1건을 생성하고 검수하는 절차입
 1. `references/MASTER_REFERENCE_v1.png`를 첫 번째 이미지로 첨부
 2. 제품의 `original` 이미지를 두 번째 이미지로 첨부
 3. `prompts/MASTER_PROMPT.md` v1.0 사용
-4. 결과물을 제품의 `output` 폴더에 새 파일로 저장
-5. `tests/QA_CHECKLIST.md`로 검수
-6. `tests/TEST_LOG.md`에 실행 조건과 판정 기록
+4. 위치·크기 조정 중에는 임시 시안으로 빠르게 확인하고 `output`과 QA에 기록하지 않음
+5. 사용자가 최종 승인한 시안만 제품의 `output` 폴더에 새 파일로 저장
+6. `tests/QA_CHECKLIST.md`로 검수
+7. `tests/TEST_LOG.md`에 실행 조건과 판정 기록
 
 입력 순서가 틀렸거나 원본이 아닌 가공본을 입력했다면 결과를 평가하지 않고 다시 실행합니다.
 
