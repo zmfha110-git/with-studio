@@ -338,7 +338,6 @@
 - Retest ID: 없음
 
 ---
-
 ## TEST-008
 
 ### 실행 정보
@@ -1577,6 +1576,537 @@
 - Observed Issue: 없음
 - Suspected Cause: 해당 없음
 - Next Action: 새 네이밍 규칙의 개별 대표이미지 최종본으로 사용
+- Retest ID: 없음
+
+---
+
+## TEST-038
+
+### 실행 정보
+
+- Date: 2026-08-01
+- Operator: Codex
+- Product: `with-wipes`
+- Tool / Model: FFmpeg 승인 투명 PNG 직접 합성 + 쿠팡 대표이미지 프리셋
+- Source Images: `products/with-wipes/original/with-wipes-individual-coupang-box-original-01.png`, `products/with-wipes/original/with-wipes-individual-product-original-02.png`
+- Derived Cutout: `products/with-wipes/output/with-wipes-individual-product-cutout-v1-03.png`
+- Reference: `references/MASTER_REFERENCE_v1.png`
+- Prompt Files: `prompts/MASTER_PROMPT.md`, `prompts/COUPANG_MAIN_PRESET.md`
+- Prompt Version: 1.0
+- Output File: `products/with-wipes/output/with-wipes-individual-main-box-product-studio-v1-02.png`
+- Authorized Composition Exception: 사용자 승인에 따라 상품을 박스 우측 전경에 겹치고 `400매 개별포장` 표기를 대부분 가림
+
+### 필수 보존 항목
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 박스 비율 | PASS | 승인된 TEST-037과 동일한 박스 변환값을 사용해 폭/높이 관계를 유지함 |
+| 중앙 박스 로고 | PASS | TEST-037 최종본과 중앙 검사 영역 RGB MD5가 `ba3eae65b8b21a45591449bc424cb528`로 일치함 |
+| 개별 포장 로고·한글 텍스트 | PASS | 새 원본의 실제 픽셀을 투명 PNG로 분리해 직접 합성함 |
+| 제품 비율 | PASS | 480×1080 컷아웃을 320×720으로 비례 축소한 뒤 전체를 균일 확대함 |
+| 우측 `400매 개별포장` | PASS (승인 예외) | 개별 포장으로 의도적으로 대부분 가림 |
+| 제품 외곽 | PASS | 실제 알파 채널을 사용해 흰색·회색 잔여 배경과 외곽 후광이 없음 |
+
+### 촬영 스타일·구도
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 박스+상품 점유율 | PASS | 결합 영역 최종 가로 폭 약 1003px로 캔버스의 약 80%를 차지함 |
+| 중앙 정렬 | PASS | 결합 영역의 최종 X 범위가 약 126~1128px로 중심 X=627px에 정렬됨 |
+| 우측 배치 | PASS | 상품을 박스 우측 전경에 배치하고 중앙 로고는 침범하지 않음 |
+| 바닥 접지 | PASS | 상품 하단에만 얕은 접지 그림자를 적용해 떠 보이지 않음 |
+| 배경·조명·화이트밸런스 | PASS | 박스와 상품에 동일한 스튜디오 톤을 유지하고 추가 색 왜곡이 없음 |
+| 생성 흔적·오염 | PASS | 생성형 재구성 없이 원본 픽셀을 직접 합성함 |
+
+### 결과
+
+- Status: PASS
+- Observed Issue: 없음
+- Suspected Cause: 해당 없음
+- Next Action: `쿠팡 대표이미지 만들어줘` 요청의 개별 상품 기준 결과물로 사용
+- Retest ID: 없음
+
+---
+
+## TEST-039
+
+### 실행 정보
+
+- Date: 2026-08-02
+- Operator: Codex
+- Product: `with-wipes`
+- Tool / Model: Codex built-in image generation, 2-pass style transfer and preservation repair
+- Source Image: `products/with-wipes/original/with-wipes-individual-detail-product-original-01.png`
+- Reference: `references/MASTER_REFERENCE_v1.png`
+- Prompt File: `prompts/MASTER_PROMPT.md` 기준을 파우치 플랫레이 보정에 맞게 적용
+- Prompt Version: 1.0
+- Output File: `products/with-wipes/output/with-wipes-individual-detail-product-studio-v1-01.png`
+- Composition Exception: 박스 정면 촬영 기준 대신 원본의 탑뷰 대각선 플랫레이 구도와 가장자리 크롭을 그대로 유지함
+
+### 필수 보존 항목
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 파우치 수·비율·실루엣 | PASS | 원본과 동일한 9개 파우치 및 부분 노출 개수, 폭·높이 관계, 외곽 형태를 유지함 |
+| 배열·회전·크롭 | PASS | 대각선 배열, 간격, 회전 방향, 캔버스 가장자리에서 잘리는 위치를 원본과 동일하게 유지함 |
+| 접힘·실링 구조 | PASS | 파우치 주름, 상하 실링, 미세 격자와 톱니형 절단선을 확대 대조해 유지됨을 확인함 |
+| 로고·포인트 색상 | PASS | 검정 `with` 로고와 파란 사각 포인트의 형태·위치·방향을 유지함 |
+| 한글·규격 문구 | PASS | `위생 물티슈`와 작은 규격 문구의 내용·위치·방향을 확대 대조해 유지됨을 확인함 |
+| 새 요소 생성·기존 요소 누락 | PASS | 제품·문구·소품의 추가나 누락이 없음 |
+
+### 촬영 스타일
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 캔버스 | PASS | 1254×1254 1:1 PNG로 저장함 |
+| 배경 | PASS | 기존의 차가운 회색 질감 배경을 경계·소품·반사 없는 순백에 가까운 심리스 배경으로 보정함 |
+| 조명·화이트밸런스 | PASS | 부드러운 하이키 확산광과 중립적인 화이트밸런스를 적용하고 은색 파우치의 하이라이트를 억제함 |
+| 그림자 | PASS | 파우치 바로 아래의 짧고 옅은 접지 그림자만 유지함 |
+| 색상 보존 | PASS | 마스터 레퍼런스의 크라프트 베이지는 적용하지 않고 원본의 은백색 포장과 검정·파랑 인쇄색을 유지함 |
+| 생성 흔적·오염 | PASS | 2차 보존 보정 후 텍스트 주변, 실링 가장자리, 배경에서 눈에 띄는 생성 흔적이 없음 |
+
+### 결과
+
+- Status: PASS
+- Observed Issue: 1차 생성에서 작은 인쇄 문구가 흐려져 2차 보존 보정을 수행함
+- Suspected Cause: 배경·조명 스타일 전이 과정에서 작은 인쇄 영역의 디테일이 함께 평활화됨
+- Next Action: 2차 보존 보정본을 최종 상세 이미지로 사용
+- Retest ID: 없음
+
+---
+
+## TEST-040
+
+### 실행 정보
+
+- Date: 2026-08-02
+- Operator: Codex
+- Product: `with-wipes`
+- Tool / Model: Codex built-in image generation, natural-light atmosphere edit
+- Source Images: `products/with-wipes/original/with-wipes-individual-detail-product-original-01.png`, `products/with-wipes/output/with-wipes-individual-detail-product-studio-v1-01.png`
+- Reference: `references/MASTER_REFERENCE_v1.png`
+- Prompt File: `prompts/MASTER_PROMPT.md`의 제품 보존 원칙과 사용자 승인 감성 자연광 방향 적용
+- Prompt Version: 1.0
+- Output File: `products/with-wipes/output/with-wipes-individual-detail-product-studio-v1-02.png`
+- Authorized Style Exception: 순백·균일광 대신 따뜻한 아이보리 배경, 좌상단 자연광의 완만한 노출 변화와 방향성 있는 접지 그림자를 적용함
+
+### 필수 보존 항목
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 파우치 수·비율·실루엣 | PASS | 9개 파우치와 부분 노출 개수, 폭·높이 관계, 외곽 형태를 유지함 |
+| 배열·회전·크롭 | PASS | 대각선 배열, 간격, 회전, 네 변의 크롭 위치를 이전 보정본과 동일하게 유지함 |
+| 접힘·실링 구조 | PASS | 파우치 주름, 상하 실링, 격자와 톱니형 절단선이 유지됨 |
+| 로고·포인트 색상 | PASS | 검정 `with` 로고와 파란 사각 포인트의 형태·위치·방향을 유지함 |
+| 한글·규격 문구 | PASS | `위생 물티슈`와 작은 규격 문구의 내용·위치·방향을 유지함 |
+| 새 요소 생성·기존 요소 누락 | PASS | 제품이나 소품의 추가·누락 없이 촬영 환경만 조정함 |
+
+### 촬영 스타일
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 캔버스 | PASS | 1254×1254 1:1 PNG로 저장함 |
+| 배경 | PASS | 순백보다 따뜻한 아이보리 무광 표면과 미세한 자연 질감을 적용함 |
+| 자연광 | PASS | 좌상단에서 우하단으로 완만하게 흐르는 확산 자연광과 노출 변화를 적용함 |
+| 그림자·공간감 | PASS | 모든 파우치에 동일한 광원 방향의 짧고 부드러운 우하단 접지 그림자를 적용해 배경과 제품을 연결함 |
+| 색상 보존 | PASS | 배경은 따뜻하게 조정하되 파우치는 은백색, 인쇄는 검정·파랑으로 유지함 |
+| 생성 흔적·오염 | PASS | 텍스트·실링 가장자리와 배경에서 눈에 띄는 생성 흔적이 없음 |
+
+### 결과
+
+- Status: PASS
+- Observed Issue: 없음
+- Suspected Cause: 해당 없음
+- Next Action: 감성 자연광 버전을 최종 후보로 사용
+- Retest ID: 없음
+
+---
+
+## TEST-042
+
+### 실행 정보
+
+- Date: 2026-08-02
+- Operator: Codex
+- Product: `with-wipes`
+- Tool / Model: Codex built-in image generation, 박스+건티슈 합성 및 2-pass 그림자 제거
+- Source Images: `products/with-wipes/original/with-wipes-dry-tissue-coupang-box-original-01.png`, `products/with-wipes/original/with-wipes-dry-tissue-sheet-stack-original-01.png`
+- Reference: `references/MASTER_REFERENCE_v1.png`
+- Prompt File: `prompts/MASTER_PROMPT.md`, `prompts/COUPANG_MAIN_PRESET.md`
+- Prompt Version: 1.0
+- Output File: `products/with-wipes/output/with-wipes-dry-tissue-main-box-product-studio-v1-01.png`
+- Previous Test: TEST-034
+- User Approval: 사용자가 제공한 최종 후보 파일을 변경 없이 승인함
+- Authorized Background Exception: 제품 외부 그림자와 눈에 띄는 음영은 없으나 배경 픽셀은 RGB 253~255 범위임. 사용자가 해당 파일 그대로 사용하도록 명시 승인함
+
+### 필수 보존 항목
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 박스 비율·실루엣·접힘 구조 | PASS | 원본의 정면 박스 비율, 상단 면, 좌우 모서리와 접힘 구조가 유지됨 |
+| 중앙 박스 로고 | PASS | `with 위드.건티슈` 로고의 형태·색상·위치가 유지되고 전경 제품이 가리지 않음 |
+| 모든 한글 텍스트 | PASS | `위드.건티슈`가 마침표를 포함해 원문대로 확인됨 |
+| 건티슈 비율·실루엣 | PASS | 가로로 긴 적층 비율, 두께, 외곽 형태와 정면 수평 정렬이 유지됨 |
+| 건티슈 표면·적층 질감 | PASS | 흰색 적층 구조와 가로 결이 유지되고 사각형 잔여 배경이나 후광이 없음 |
+| 새 요소 생성·기존 요소 누락 | PASS | 박스와 건티슈 외의 소품·문구가 추가되거나 기존 요소가 누락되지 않음 |
+
+### 촬영 스타일·구도
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 캔버스 | PASS | 1254×1254 RGB PNG로 저장함 |
+| 박스+상품 점유율 | PASS | 결합 영역 가로 폭 약 1021px로 캔버스의 약 81.4%를 차지해 약 80% 기준에 들어옴 |
+| 중앙 정렬 | PASS | 결합 영역 중심이 캔버스 중심에서 약 15px 이내이며 시각적으로 중앙 정렬됨 |
+| 우측 배치·로고 시인성 | PASS | 건티슈를 박스 우측 전경에 배치하고 중앙 로고 전체를 노출함 |
+| 그림자·음영 | PASS | 박스와 건티슈 외부에 눈에 띄는 접지 그림자·투영 그림자·바닥선이 없음 |
+| 배경 | PASS (승인 예외) | 배경은 시각적으로 균일한 순백이며 측정값 RGB 253~255 편차를 사용자가 승인함 |
+| 박스 색상·표면 | PASS | 밝고 중립적인 웜 베이지 크라프트 톤과 미세한 무광 표면 질감이 유지됨 |
+| 생성 흔적·오염 | PASS | 제품 외곽, 텍스트 주변과 배경에서 눈에 띄는 생성 흔적·오염이 없음 |
+
+### 결과
+
+- Status: PASS
+- Observed Issue: 배경이 수치상 완전한 단색 `#FFFFFF`는 아니지만 눈에 띄는 그림자·음영이 없고 사용자가 결과 파일을 명시 승인함
+- Suspected Cause: 생성형 이미지 출력에서 순백 배경에 RGB 2 이내의 미세한 톤 편차가 남음
+- Next Action: 승인된 파일을 건티슈 쿠팡 대표이미지 최종본으로 사용
+- Retest ID: 없음
+
+---
+
+## TEST-041
+
+### 실행 정보
+
+- Date: 2026-08-02
+- Operator: Codex
+- Product: `with-wipes`
+- Tool / Model: Codex built-in image generation, shadow and packaging-surface refinement
+- Source Images: `products/with-wipes/original/with-wipes-individual-detail-product-original-01.png`, `products/with-wipes/output/with-wipes-individual-detail-product-studio-v1-02.png`
+- Reference: `references/MASTER_REFERENCE_v1.png`
+- Prompt File: `prompts/MASTER_PROMPT.md`의 제품 보존 원칙과 사용자 요청 음영·주름 완화 적용
+- Prompt Version: 1.0
+- Output File: `products/with-wipes/output/with-wipes-individual-detail-product-studio-v1-03.png`
+- Authorized Surface Exception: 포장 구조는 유지하면서 본체의 큰 눌림과 깊은 구김만 완화하고 미세 굴곡은 재질감으로 남김
+
+### 필수 보존 항목
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 파우치 수·비율·실루엣 | PASS | 9개 파우치와 부분 노출 개수, 폭·높이 관계, 외곽 형태를 유지함 |
+| 배열·회전·크롭 | PASS | 대각선 배열, 간격, 회전과 네 변의 크롭 위치를 유지함 |
+| 실링 구조 | PASS | 상하 실링, 격자와 톱니형 절단선의 형태와 위치를 유지함 |
+| 로고·포인트 색상 | PASS | 검정 `with` 로고와 파란 사각 포인트의 형태·위치·방향을 유지함 |
+| 한글·규격 문구 | PASS | `위생 물티슈`와 작은 규격 문구의 내용·위치·방향을 유지함 |
+| 새 요소 생성·기존 요소 누락 | PASS | 제품이나 소품의 추가·누락 없이 표면과 음영만 조정함 |
+
+### 촬영 스타일·표면
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 캔버스 | PASS | 1254×1254 1:1 PNG로 저장함 |
+| 배경·자연광 | PASS | 따뜻한 아이보리 무광 배경과 좌상단 확산 자연광을 유지함 |
+| 그림자 | PASS | 우하단 방향은 유지하면서 농도를 낮추고 바깥쪽 경계를 넓고 부드럽게 풀어냄 |
+| 접지감 | PASS | 제품 바로 아래의 옅은 접지선을 남겨 파우치가 뜨지 않게 함 |
+| 포장지 주름 | PASS | 본체의 큰 눌림과 깊은 구김은 완화하고 가장자리·실링 주변의 미세 굴곡은 남김 |
+| 재질 자연스러움 | PASS | 완전한 평면이나 플라스틱 렌더처럼 보이지 않고 유연한 포장재의 낮은 굴곡과 미세 질감을 유지함 |
+| 생성 흔적·오염 | PASS | 텍스트·실링 가장자리와 배경에서 눈에 띄는 생성 흔적이 없음 |
+
+### 결과
+
+- Status: PASS
+- Observed Issue: 없음
+- Suspected Cause: 해당 없음
+- Next Action: 음영과 포장 표면을 정리한 `-03` 버전을 최종 후보로 사용
+- Retest ID: 없음
+
+---
+
+## TEST-043
+
+### 실행 정보
+
+- Date: 2026-08-02
+- Operator: Codex
+- Product: `with-wipes`
+- Tool / Model: Codex built-in image generation, user tone-reference style transfer
+- Source Images: `products/with-wipes/original/with-wipes-individual-detail-product-original-01.png`, `products/with-wipes/output/with-wipes-individual-detail-product-studio-v1-03.png`
+- Style Reference: `/Users/mgrv/work/with-wipes/images/대표이미지/대표이미지/개별.png`
+- Master Reference: `references/MASTER_REFERENCE_v1.png`
+- Prompt File: `prompts/MASTER_PROMPT.md`의 제품 보존 원칙과 사용자 제공 톤 레퍼런스 적용
+- Prompt Version: 1.0
+- Output File: `products/with-wipes/output/with-wipes-individual-detail-product-studio-v1-04.png`
+- Previous Test: TEST-041
+- Authorized Tone Exception: 마스터의 박스 크라프트 톤 대신 사용자 제공 개별 파우치 사진의 중립 화이트 배경·저대비 음영을 우선 적용함
+
+### 필수 보존 항목
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 파우치 수·비율·실루엣 | PASS | 9개 파우치와 부분 노출 개수, 폭·높이 관계, 외곽 형태를 유지함 |
+| 배열·회전·크롭 | PASS | 대각선 배열, 간격, 회전과 네 변의 크롭 위치를 유지함 |
+| 실링 구조 | PASS | 상하 실링, 격자와 톱니형 절단선의 형태와 위치를 유지함 |
+| 로고·포인트 색상 | PASS | 검정 `with` 로고와 파란 사각 포인트의 형태·위치·방향을 유지함 |
+| 한글·규격 문구 | PASS | `위생 물티슈`와 작은 규격 문구의 내용·위치·방향을 유지함 |
+| 새 요소 생성·기존 요소 누락 | PASS | 제품이나 소품의 추가·누락 없이 톤과 촬영 환경만 조정함 |
+
+### 촬영 스타일·톤
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 캔버스 | PASS | 1254×1254 1:1 PNG로 저장함 |
+| 배경 | PASS | 크림색과 표면 질감을 제거하고 레퍼런스처럼 거의 순백인 중립 화이트 심리스 배경으로 조정함 |
+| 조명·화이트밸런스 | PASS | 밝은 정면 확산광, 낮은 대비와 중립적인 화이트밸런스를 적용함 |
+| 그림자 | PASS | 레퍼런스와 유사한 짧고 옅은 중립 회색 접지 그림자만 남김 |
+| 포장지 재질 | PASS | 밝은 백색 반무광 포장 톤과 자연스러운 미세 굴곡을 유지하고 큰 구김은 억제함 |
+| 제품·배경 분리 | PASS | 흰색 제품과 흰색 배경 사이에 얕은 명암차와 접지선이 남아 외곽이 소실되지 않음 |
+| 생성 흔적·오염 | PASS | 텍스트·실링 가장자리와 배경에서 눈에 띄는 생성 흔적이 없음 |
+
+### 결과
+
+- Status: PASS
+- Observed Issue: 없음
+- Suspected Cause: 해당 없음
+- Next Action: 사용자 제공 개별 파우치 톤과 맞춘 `-04` 버전을 최종 후보로 사용
+- Retest ID: 없음
+
+---
+
+## TEST-044
+
+### 실행 정보
+
+- Date: 2026-08-02
+- Operator: Codex
+- Product: `with-wipes`
+- Tool / Model: Codex built-in image generation, product-mockup edit
+- Source Images: `references/MASTER_REFERENCE_v1.png`, `products/with-wipes/original/with-wipes-mini-box-original-01.png`, `products/with-wipes/output/with-wipes-common-box-studio-v1-06.png`
+- Prompt File: `prompts/MASTER_PROMPT.md`의 제품 보존 원칙과 기존 박스 결과물의 정면 스튜디오 구도 적용
+- Prompt Version: 1.0
+- Output File: `products/with-wipes/output/with-wipes-mini-box-studio-v1-02.png`
+- Previous Draft: `products/with-wipes/output/with-wipes-mini-box-studio-v1-01.png`
+
+### 필수 보존 항목
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 박스 비율·실루엣 | PASS | 원본의 가로로 길고 낮은 폭·높이 관계와 전면 외곽 형태를 유지함 |
+| 접힘 구조·모서리 | PASS | 상단 덮개, 전면 경계, 좌우 모서리와 하단 접지 형태를 유지함 |
+| 포장 테이프 | PASS | 상단을 가로지르는 흰색 밀봉 테이프의 방향과 위치를 유지함 |
+| 수량·분류 문구 | PASS | `500매`, `(1매 포장형)`, `위생용품`의 내용과 상단 좌우 배치를 유지함 |
+| 로고·제품명 | PASS | `with`, `위드.미니물티슈`의 검정 인쇄와 중앙 배치를 유지함 |
+| 새 요소 생성·기존 요소 누락 | PASS | 제품이나 소품의 추가·누락 없이 촬영 환경과 표면 톤만 정리함 |
+
+### 촬영 스타일·구도
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 캔버스 | PASS | 1254×1254 1:1 PNG로 저장함 |
+| 정면 구도·중앙 배치 | FAIL | 카메라가 박스보다 높아 상판과 흰 테이프가 넓게 노출됨. 사용자 제공 정면 레퍼런스와 불일치함 |
+| 배경 | PASS | 경계·소품·반사·질감이 없는 순백에 가까운 심리스 배경을 적용함 |
+| 조명·화이트밸런스 | PASS | 부드러운 하이키 확산광과 중립적인 웜 베이지 크라프트 톤을 적용함 |
+| 그림자 | PASS | 박스 바로 아래에 짧고 옅은 접지 그림자만 남김 |
+| 표면 마감 | PASS | 과한 광택 없이 미세하고 불규칙한 무광 종이 질감을 유지함 |
+| 생성 흔적·오염 | PASS | 주요 한글·로고 가장자리와 배경에서 눈에 띄는 생성 흔적이나 오염이 없음 |
+
+### 결과
+
+- Status: FAIL
+- Observed Issue: 상판과 흰 테이프가 넓게 보여 정면 촬영 조건을 충족하지 못함
+- Suspected Cause: 카메라 높이가 박스 전면 중앙보다 높고 아래를 향한 각도가 남음
+- Next Action: 사용자 제공 정면 박스 이미지를 각도 레퍼런스로 추가해 카메라 높이와 축을 재설정함
+- Retest ID: TEST-045
+
+---
+
+## TEST-045
+
+### 실행 정보
+
+- Date: 2026-08-02
+- Operator: Codex
+- Product: `with-wipes`
+- Tool / Model: Codex built-in image generation, frontal-camera correction
+- Source Images: `references/MASTER_REFERENCE_v1.png`, `products/with-wipes/original/with-wipes-mini-box-original-01.png`
+- Camera Reference: `/Users/mgrv/work/with-wipes/images/대표이미지/박스이미지/개별_박스이미지.png`
+- Prompt File: `prompts/MASTER_PROMPT.md`의 제품 보존 원칙과 사용자 지정 정면 카메라 조건 적용
+- Prompt Version: 1.0
+- Output File: `products/with-wipes/output/with-wipes-mini-box-studio-v1-03.png`
+- Previous Test: TEST-044
+
+### 필수 보존 항목
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 박스 비율·실루엣 | PASS | 원본의 가로로 길고 낮은 폭·높이 관계와 전면 외곽 형태를 유지함 |
+| 전면 모서리·접힘 | PASS | 좌우 수직 모서리와 상하 전면 경계를 유지하고 측면 노출을 최소화함 |
+| 수량·분류 문구 | PASS | `500매`, `(1매 포장형)`, `위생용품`의 내용과 상단 좌우 배치를 유지함 |
+| 로고·제품명 | PASS | `with`, `위드.미니물티슈`와 점 표기의 내용·검정 인쇄·중앙 배치를 유지함 |
+| 새 요소 생성·기존 요소 누락 | PASS | 전면 제품 정보의 추가·누락 없이 카메라 각도와 촬영 환경만 변경함 |
+
+### 촬영 스타일·구도
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 캔버스 | PASS | 1254×1254 1:1 PNG로 저장함 |
+| 카메라 높이 | PASS | 카메라 축을 전면 중앙 높이에 맞춰 위에서 내려다보는 각도를 제거함 |
+| 정면 평행 | PASS | 좌우 모서리는 수직, 전면 상하 경계는 수평으로 화면 가장자리와 평행함 |
+| 상판·테이프 노출 | PASS | 상판 면, 흰 테이프와 상단 인쇄가 보이지 않고 얇은 상단 모서리만 남음 |
+| 측면 노출 | PASS | 좌우 측면이 거의 보이지 않는 정면 구도를 적용함 |
+| 배경·조명 | PASS | 순백에 가까운 심리스 배경과 부드러운 하이키 확산광을 유지함 |
+| 그림자 | PASS | 박스 바로 아래에 짧고 옅은 접지 그림자만 남김 |
+| 표면 마감 | PASS | 밝은 웜 베이지 크라프트 톤과 미세한 무광 종이 질감을 유지함 |
+
+### 결과
+
+- Status: REVISE
+- Observed Issue: 정면 각도는 통과했으나 덕용 박스 레퍼런스보다 크라프트 색이 진하고 노란빛이 강하며, 표면 결·그림자 대비와 화면 점유율이 큼
+- Suspected Cause: 각도 보정 과정에서 기존 박스의 어두운 웜 톤과 거친 질감이 유지됨
+- Next Action: 정면 구도와 제품 문구는 잠그고 색감·표면·점유율·그림자만 덕용 레퍼런스에 맞춰 재보정함
+- Retest ID: TEST-046
+
+---
+
+## TEST-046
+
+### 실행 정보
+
+- Date: 2026-08-02
+- Operator: Codex
+- Product: `with-wipes`
+- Tool / Model: Codex built-in image generation, tone and surface refinement
+- Source Images: `references/MASTER_REFERENCE_v1.png`, `products/with-wipes/original/with-wipes-mini-box-original-01.png`, `products/with-wipes/output/with-wipes-mini-box-studio-v1-03.png`
+- Tone Reference (analysis only): `/Users/mgrv/work/with-wipes/images/대표이미지/박스이미지/덕용_대표이미지_박스.png`
+- Prompt File: `prompts/MASTER_PROMPT.md`의 제품 보존 원칙과 사용자 제공 덕용 박스의 톤·표면·점유율 기준 적용
+- Prompt Version: 1.0
+- Output File: `products/with-wipes/output/with-wipes-mini-box-studio-v1-04.png`
+- Previous Test: TEST-045
+
+### 필수 보존 항목
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 박스 비율·실루엣 | PASS | 미니 박스의 가로로 길고 낮은 폭·높이 관계와 전면 외곽 형태를 유지함 |
+| 정면 카메라 각도 | PASS | 상판·테이프·측면이 보이지 않고 전면 네 변이 화면 가장자리와 평행함 |
+| 수량·분류 문구 | PASS | `500매`, `(1매 포장형)`, `위생용품`의 내용과 상단 좌우 배치를 유지함 |
+| 로고·제품명 | PASS | `with`, `위드.미니물티슈`와 점 표기의 내용·검정 인쇄·중앙 배치를 유지함 |
+| 다른 제품 정보 혼입 | PASS | `덕용`, `400매` 등 레퍼런스 제품의 문구가 결과물에 들어오지 않음 |
+| 새 요소 생성·기존 요소 누락 | PASS | 제품 정보의 추가·누락 없이 촬영 톤과 화면 배치만 조정함 |
+
+### 촬영 스타일·톤
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 캔버스 | PASS | 1254×1254 1:1 PNG로 저장함 |
+| 화면 점유율 | PASS | 박스 가로 폭이 캔버스의 약 79%로 덕용 레퍼런스의 약 80% 수준과 유사함 |
+| 크라프트 색감 | PASS | 기존의 진한 노란빛을 줄이고 밝고 저채도인 중립 웜 베이지로 조정함 |
+| 노출·화이트밸런스 | PASS | 전면 밝기를 균일하게 높이고 중립적인 화이트밸런스와 낮은 대비를 적용함 |
+| 표면 질감 | PASS | 거친 얼룩과 고대비 섬유 결을 줄이고 미세한 무광 종이 결만 남김 |
+| 배경 | PASS | 경계·소품·반사 없는 순백에 가까운 심리스 배경을 유지함 |
+| 그림자 | PASS | 박스 바로 아래에 얇고 옅은 중립 회색 접지 그림자만 남김 |
+| 생성 흔적·오염 | PASS | 주요 문구·모서리와 배경에서 눈에 띄는 생성 흔적이나 오염이 없음 |
+
+### 결과
+
+- Status: REVISE
+- Observed Issue: 시각 검토 후 전면 톤이 덕용 레퍼런스보다 밝고 희게 보임. 측정 밝기 `202.5`로 레퍼런스 `185.7`보다 `16.8` 높고 채도 지표도 `17%`로 레퍼런스 `25%`보다 낮음
+- Suspected Cause: 밝기·표면 정리 과정에서 노출을 과하게 높이고 크라프트 색의 갈색 성분을 지나치게 줄임
+- Next Action: `-04`의 정면 구도·표면·점유율을 잠그고 `-03`과 `-04`의 중간 톤으로만 보정함
+- Retest ID: TEST-047
+
+---
+
+## TEST-047
+
+### 실행 정보
+
+- Date: 2026-08-02
+- Operator: Codex
+- Product: `with-wipes`
+- Tool / Model: Codex built-in image generation, calibrated tone-only correction
+- Source Images: `references/MASTER_REFERENCE_v1.png`, `products/with-wipes/original/with-wipes-mini-box-original-01.png`, `products/with-wipes/output/with-wipes-mini-box-studio-v1-04.png`, `products/with-wipes/output/with-wipes-mini-box-studio-v1-03.png`
+- Tone Target: 전면 무문자 영역 median RGB 약 `(208, 182, 156)`, 밝기 약 `185.7`
+- Prompt File: `prompts/MASTER_PROMPT.md`의 제품 보존 원칙과 실측 중간 톤 적용
+- Prompt Version: 1.0
+- Output File: `products/with-wipes/output/with-wipes-mini-box-studio-v1-05.png`
+- Previous Test: TEST-046
+
+### 필수 보존 항목
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 박스 비율·실루엣 | PASS | `-04`의 가로로 길고 낮은 비율과 전면 외곽 형태를 유지함 |
+| 정면 카메라 각도 | PASS | 상판·테이프·측면이 보이지 않고 전면 네 변이 화면 가장자리와 평행함 |
+| 수량·분류 문구 | PASS | `500매`, `(1매 포장형)`, `위생용품`의 내용과 상단 좌우 배치를 유지함 |
+| 로고·제품명 | PASS | `with`, `위드.미니물티슈`와 점 표기의 내용·검정 인쇄·중앙 배치를 유지함 |
+| 새 요소 생성·기존 요소 누락 | PASS | 제품 정보의 추가·누락 없이 크라프트 색감만 보정함 |
+
+### 촬영 스타일·톤
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 캔버스 | PASS | 1254×1254 1:1 PNG로 저장함 |
+| 화면 점유율 | PASS | `-04`의 약 79% 가로 점유율과 흰 여백을 유지함 |
+| 실측 밝기 | PASS | 새 결과 `185.1`, 덕용 레퍼런스 `185.7`로 차이가 `0.6`에 불과함 |
+| 실측 RGB | PASS | 새 결과 `(204, 182, 160)`, 레퍼런스 `(208, 182, 156)`으로 채널별 최대 차이가 `4`임 |
+| 채도 | PASS | `-04`의 희게 뜬 저채도 톤을 줄이고 중립 웜 크라프트 색을 복원함 |
+| 표면 질감 | PASS | `-04`의 매끄러운 무광 표면과 미세한 저대비 종이 결을 유지함 |
+| 배경·그림자 | PASS | 순백에 가까운 배경과 얇고 옅은 접지 그림자를 유지함 |
+| 생성 흔적·오염 | PASS | 주요 문구·모서리와 배경에서 눈에 띄는 생성 흔적이나 오염이 없음 |
+
+### 결과
+
+- Status: PASS
+- Observed Issue: 없음
+- Suspected Cause: 해당 없음
+- User Approval: 2026-08-02 최종 승인
+- Next Action: `-05` 결과를 미니 물티슈 박스 이미지 최종본으로 사용
+- Retest ID: 없음
+
+---
+
+## TEST-048
+
+### 실행 정보
+
+- Date: 2026-08-02
+- Operator: Codex
+- Product: `with-wipes`
+- Tool / Model: Codex built-in image generation + FFmpeg pixel-preserving composition scale
+- Source Images: `/Users/mgrv/work/with-wipes/images/대표이미지/개별(무지)_대표이미지.png`, `/Users/mgrv/work/with-wipes/images/대표이미지/박스이미지/개별_박스이미지.png`
+- Prompt File: `prompts/COUPANG_MAIN_PRESET.md`
+- Prompt Version: 1.0
+- Output File: `products/with-wipes/output/with-wipes-individual-plain-main-box-product-studio-v1-01.png`
+- Previous Test: TEST-047
+
+### 필수 보존 항목
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 박스 비율·실루엣 | PASS | 개별 물티슈 박스의 정면 직사각형 비율과 모서리 구조를 유지함 |
+| 박스 로고·인쇄 | PASS | `위생용품`, `with`, `위드.물티슈`의 형태·색상·배치를 유지함 |
+| 상품 비율·실루엣 | PASS | 사용자 제공 원본 기준 약 2.3:1의 가로로 긴 포장 비율과 톱니형 마감·실링 구조를 유지함 |
+| 상품 문구 | PASS | `위생용품`, `내용량 : 1매(200x220mm, 1겹)`의 내용과 우측 인쇄 배치를 유지함 |
+| 승인 중첩 범위 | PASS | 상품을 박스 우측 전경에서 왼쪽으로 깊게 중첩해 `400매`, `개별포장`을 의도적으로 가림 |
+| 새 요소 생성·기존 요소 누락 | PASS | 승인된 중첩 외에 로고·문구·제품 요소의 추가나 누락이 없음 |
+
+### 쿠팡 대표이미지 구도·배경
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 캔버스 | PASS | 1254×1254 1:1 PNG, `rgb24`로 저장함 |
+| 가로 점유율 | PASS | 박스+상품 결합 영역 80.38%로 목표 범위 78–82%를 충족함 |
+| 중앙 정렬 | PASS | 결합 영역 중심 x=626px, 기준 x=627px 대비 오차 1px임 |
+| 배경 | PASS | 단색 순백 배경이며 그라데이션·비네팅·바닥선·반사가 없음 |
+| 외부 그림자 | PASS | 박스와 상품 외부에 접지 그림자·투영 그림자·후광이 없음 |
+| 제품 내부 형태 | PASS | 확정 시안 전체를 균등 확대해 박스와 상품의 상대 크기·중첩·가로세로 비율을 유지함 |
+
+### 결과
+
+- Status: PASS
+- Observed Issue: 없음
+- Suspected Cause: 해당 없음
+- User Approval: 2026-08-02 최종 승인
+- Next Action: 해당 파일을 개별(무지) 쿠팡 대표이미지 최종본으로 사용
 - Retest ID: 없음
 
 ---
