@@ -6,7 +6,7 @@ usage() {
   cat <<'EOF'
 Usage: bash scripts/check-coupang-main.sh <image.png> [--preview]
 
-Checks canvas, approximate 80% horizontal occupancy, center alignment,
+Checks canvas, minimum 85% horizontal occupancy, center alignment,
 output filename, master-reference SHA-256, and reports the next test ID.
 Text fidelity and interior shadows remain visual QA items.
 EOF
@@ -76,8 +76,8 @@ occupancy="$(awk -v width="$crop_width" 'BEGIN { printf "%.2f", width / 1254 * 1
 center_x="$(awk -v x="$crop_x" -v width="$crop_width" 'BEGIN { printf "%.1f", x + width / 2 }')"
 center_delta="$(awk -v center="$center_x" 'BEGIN { delta=center-627; if (delta<0) delta=-delta; printf "%.1f", delta }')"
 
-awk -v value="$occupancy" 'BEGIN { exit !(value >= 78 && value <= 82) }' || {
-  echo "FAIL: horizontal occupancy must be 78-82%, got ${occupancy}%" >&2
+awk -v value="$occupancy" 'BEGIN { exit !(value >= 85 && value <= 92) }' || {
+  echo "FAIL: horizontal occupancy must be 85-92%, got ${occupancy}%" >&2
   exit 1
 }
 
@@ -87,7 +87,7 @@ awk -v value="$center_delta" 'BEGIN { exit !(value <= 20) }' || {
 }
 
 echo "PASS: canvas 1254x1254"
-echo "PASS: horizontal occupancy ${occupancy}% (target 78-82%)"
+echo "PASS: horizontal occupancy ${occupancy}% (target 85-92%, recommended 88-90%)"
 echo "PASS: horizontal center x=${center_x}, delta=${center_delta}px"
 echo "PASS: master reference SHA-256 $actual_reference_sha"
 echo "NEXT_TEST_ID: $(bash scripts/next-test-id.sh)"

@@ -2110,3 +2110,156 @@
 - Retest ID: 없음
 
 ---
+
+## TEST-049
+
+### 실행 정보
+
+- Date: 2026-08-02
+- Operator: Codex
+- Product: `with-wipes individual-plain Coupang main`
+- Tool / Model: Codex built-in image generation tool + Pillow 균일 비율 확대·순백 정규화
+- Source Image: `/Users/mgrv/work/with-wipes/images/대표이미지/쿠팡대표이미지/개별 무지 쿠팡 대표이미지.png`
+- Reference: `references/MASTER_REFERENCE_v1.png`
+- Prompt File: `prompts/COUPANG_MAIN_PRESET.md`, `prompts/MASTER_PROMPT.md`
+- Prompt Version: 1.0
+- Output File: `/Users/mgrv/work/with-wipes/images/대표이미지/쿠팡대표이미지/개별 무지 쿠팡 대표이미지_가이드수정.png`
+
+### 필수 보존 및 쿠팡 기준
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 비율·실루엣·접힘 구조 | PASS | 박스와 개별 포장의 가로세로 관계, 모서리, 접힘과 중첩 구도가 유지됨 |
+| 로고·한글·인쇄 배치 | PASS | `위생용품`, `with 위드.물티슈`, 내용량 표기가 원문대로 확인됨 |
+| 배경 | PASS | 네 모서리와 외부 배경이 `#FFFFFF`임 |
+| 화면 점유율·중앙 정렬 | PASS | 가로 점유율 86.76%, 중심 오차 3px |
+
+### 결과
+
+- Status: PASS
+- Observed Issue: 없음
+- Next Action: 쿠팡 대표이미지 등록
+
+
+## TEST-050
+
+### 실행 정보
+
+- Date: 2026-08-02
+- Operator: Codex
+- Product: `with-wipes individual Coupang main`
+- Tool / Model: Codex built-in image generation tool + Pillow 균일 비율 확대·순백 정규화
+- Source Image: `/Users/mgrv/work/with-wipes/images/대표이미지/쿠팡대표이미지/개별_대표이미지_쿠팡.png`
+- Reference: `references/MASTER_REFERENCE_v1.png`
+- Prompt File: `prompts/COUPANG_MAIN_PRESET.md`, `prompts/MASTER_PROMPT.md`
+- Prompt Version: 1.0
+- Output File: `/Users/mgrv/work/with-wipes/images/대표이미지/쿠팡대표이미지/개별_대표이미지_쿠팡_가이드수정.png`
+
+### 필수 보존 및 쿠팡 기준
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 비율·실루엣·접힘 구조 | PASS | 박스와 세로형 개별 포장의 형태·중첩 관계가 유지됨 |
+| 로고·한글·인쇄 배치 | PASS | 박스 로고와 포장지의 `위생용품`, 내용량, `with 위드.` 표기가 유지됨 |
+| 배경 | PASS | 네 모서리와 외부 배경이 `#FFFFFF`임 |
+| 화면 점유율·중앙 정렬 | PASS | 가로 점유율 88.04%, 중심 오차 1px |
+
+### 결과
+
+- Status: PASS
+- Observed Issue: 없음
+- Next Action: 쿠팡 대표이미지 등록
+
+
+
+## TEST-051
+
+### 실행 정보
+
+- Date: 2026-08-02
+- Operator: Codex
+- Product: `with-wipes dry-tissue Coupang main`
+- Tool / Model: Codex built-in image generation tool + Pillow 균일 비율 확대·순백 정규화
+- Source Image: `/Users/mgrv/work/with-wipes/images/대표이미지/쿠팡대표이미지/건티슈_대표이미지_쿠팡.png`
+- Reference: `references/MASTER_REFERENCE_v1.png`
+- Prompt File: `prompts/COUPANG_MAIN_PRESET.md`, `prompts/MASTER_PROMPT.md`
+- Prompt Version: 1.0
+- Output File: `/Users/mgrv/work/with-wipes/images/대표이미지/쿠팡대표이미지/건티슈_대표이미지_쿠팡_가이드수정.png`
+
+### 필수 보존 및 쿠팡 기준
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 비율·실루엣·접힘 구조 | PASS | 박스와 전경 건티슈의 비율·외곽·중첩 구도가 유지됨 |
+| 로고·한글·인쇄 배치 | PASS | `with 위드.건티슈` 로고와 인쇄 배치가 유지됨 |
+| 배경 | PASS | 네 모서리와 외부 배경이 `#FFFFFF`임 |
+| 화면 점유율·중앙 정렬 | PASS | 가로 점유율 88.04%, 중심 오차 1px |
+
+### 결과
+
+- Status: PASS
+- Observed Issue: 없음
+- Next Action: 쿠팡 대표이미지 등록
+
+
+
+## TEST-052
+
+### 실행 정보
+
+- Date: 2026-08-02
+- Operator: Codex
+- Product: `with-wipes bulk Coupang main`
+- Tool / Model: Pillow 원본 픽셀 보존 합성·균일 비율 확대·크라프트 선택 보정
+- Source Image: `/Users/mgrv/work/with-wipes/images/대표이미지/쿠팡대표이미지/덕용_대표이미지_쿠팡.png`
+- Reference: `references/MASTER_REFERENCE_v1.png`, `/Users/mgrv/work/with-wipes/images/대표이미지/쿠팡대표이미지/건티슈_대표이미지_쿠팡.png`
+- Prompt File: `prompts/COUPANG_MAIN_PRESET.md`, `prompts/MASTER_PROMPT.md`
+- Prompt Version: 1.0
+- Output File: `/Users/mgrv/work/with-wipes/images/대표이미지/쿠팡대표이미지/덕용_대표이미지_쿠팡_가이드수정.png`
+
+### 필수 보존 및 쿠팡 기준
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 비율·실루엣·접힘 구조 | PASS | 원본 전체를 한 단위로 비례 확대해 박스와 덕용 포장의 형태가 유지됨 |
+| 로고·한글·인쇄 배치 | PASS | 원본 픽셀 기반 처리로 `위드.물티슈`와 포장지의 모든 인쇄 정보가 유지됨 |
+| 배경 | PASS | 네 모서리와 외부 배경이 `#FFFFFF`임 |
+| 화면 점유율·중앙 정렬 | PASS | 가로 점유율 86.76%, 중심 오차 1px |
+
+### 결과
+
+- Status: PASS
+- Observed Issue: 없음
+- Next Action: 쿠팡 대표이미지 등록
+
+
+
+## TEST-053
+
+### 실행 정보
+
+- Date: 2026-08-02
+- Operator: Codex
+- Product: `with-wipes mini Coupang main`
+- Tool / Model: Codex built-in image compositing tool + Pillow 균일 비율 확대·순백 정규화
+- Source Image: `/Users/mgrv/work/with-wipes/images/대표이미지/박스이미지/미니_박스이미지.png`, `/Users/mgrv/work/with-wipes/images/web/mini.png`
+- Reference: `references/MASTER_REFERENCE_v1.png`
+- Prompt File: `prompts/COUPANG_MAIN_PRESET.md`, `prompts/MASTER_PROMPT.md`
+- Prompt Version: 1.0
+- Output File: `/Users/mgrv/work/with-wipes/images/대표이미지/쿠팡대표이미지/미니_대표이미지_쿠팡_가이드수정.png`
+
+### 필수 보존 및 쿠팡 기준
+
+| 항목 | 판정 | 관찰 |
+| --- | --- | --- |
+| 비율·실루엣·접힘 구조 | PASS | 실제 미니 박스 원본의 넓은 가로 비율과 개별 포장의 형태가 유지됨 |
+| 로고·한글·인쇄 배치 | PASS | `500매`, `(1매 포장형)`, `위생용품`, `with 위드.미니물티슈`가 원문대로 확인됨 |
+| 사용자 승인 구도 | PASS | 포장지를 왼쪽으로 당겨 우측 돌출을 줄인 승인 구도를 적용함 |
+| 배경 | PASS | 네 모서리와 외부 배경이 `#FFFFFF`임 |
+| 화면 점유율·중앙 정렬 | PASS | 가로 점유율 85.49%, 중심 오차 11px |
+
+### 결과
+
+- Status: PASS
+- Observed Issue: 없음
+- Next Action: 쿠팡 대표이미지 등록
