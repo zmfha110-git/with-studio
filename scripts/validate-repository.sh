@@ -18,6 +18,10 @@ required_files=(
   "tests/QA_CHECKLIST.md"
   "tests/TEST_LOG.md"
   "$REFERENCE_FILE"
+  "scripts/append-test-log.sh"
+  "scripts/check-coupang-main.sh"
+  "scripts/compose-coupang-main.sh"
+  "scripts/next-test-id.sh"
 )
 
 required_directories=(
